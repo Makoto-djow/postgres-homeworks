@@ -15,9 +15,10 @@ WHERE customers.city = 'London' AND employees.city = 'London' AND shippers.compa
 SELECT products.product_name, products.units_in_stock, suppliers.contact_name, suppliers.phone
 FROM products
 JOIN suppliers ON products.supplier_id = suppliers.supplier_id
+JOIN categories ON products.category_id = categories.category_id
 WHERE products.discontinued IS NOT NULL
 AND products.units_in_stock < 25
-AND products.category_id IN (2, 4)
+AND categories.category_name IN ('Dairy Products', 'Condiments')
 ORDER BY products.units_in_stock
 
 -- 3. Список компаний заказчиков (company_name из табл customers), не сделавших ни одного заказа
